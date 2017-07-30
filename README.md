@@ -1,2 +1,12 @@
-# java-cf-model-util
-Model Util for java spring projects.
+# Model Util for java spring projects.
+=================================================
+
+## This project was written using follow technologies:
+
+1. **Java**
+2. **Spring**
+3. **Hibernate**
+4. **MySQL**
+5. **JUnit**
+6. **Maven**
+7. **Log4J**

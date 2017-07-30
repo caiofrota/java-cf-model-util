@@ -1,7 +1,6 @@
 # Model Util for java spring projects.
-=================================================
 
-## This project was written using follow technologies:
+This project was written using follow technologies:
 
 1. **Java**
 2. **Spring**

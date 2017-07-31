@@ -8,7 +8,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
 		<!-- Entities -->
-		<class>br.com.caiofrota.modelutil.test.repository.DataSourceEntity</class>
+		<class>br.com.caiofrota.modelutil.test.domain.TestingEntity</class>
 
 		<!-- Properties -->
 		<properties>
@@ -17,7 +17,7 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>
 	</persistence-unit>
 </persistence>

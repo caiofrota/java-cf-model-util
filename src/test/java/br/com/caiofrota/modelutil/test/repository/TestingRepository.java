@@ -1,6 +1,7 @@
 package br.com.caiofrota.modelutil.test.repository;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.caiofrota.modelutil.repositories.impl.GenericRepositoryImpl;
 import br.com.caiofrota.modelutil.test.domain.TestingEntity;
@@ -16,5 +17,19 @@ import br.com.caiofrota.modelutil.test.domain.TestingEntity;
 public class TestingRepository extends GenericRepositoryImpl<TestingEntity, Long> {
 
 	private static final long serialVersionUID = 4575959798206651226L;
+
+	private boolean config = false;
+
+	@Transactional
+	public void setup() {
+		if (!config) {
+			for (int i = 0; i < 5; i++) {
+				TestingEntity object = new TestingEntity();
+				object.setDescription("My Test " + (i + 1) + "!");
+				save(object);
+			}
+			config = true;
+		}
+	}
 
 }

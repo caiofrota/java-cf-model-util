@@ -3,12 +3,15 @@ package br.com.caiofrota.modelutil.repositories.impl;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -94,6 +97,35 @@ public class GenericRepositoryImpl<E extends GenericEntity<PK>, PK extends Seria
 		}
 		logger.info("Method findBy");
 		return (E) getSession().get(persistentClass, primaryKey);
+	}
+
+	/**
+	 * Find a object by primary key.
+	 * 
+	 * @return List of objects.
+	 */
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public List<E> findAll() {
+		logger.info("Method findBy");
+		return getSession().createCriteria(persistentClass).list();
+	}
+	
+	/**
+	 * Find a object by criterias.
+	 * 
+	 * @return List of objects.
+	 */
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public List<E> findByCriteria(Criterion... criterias) {
+		Criteria criteria = getSession().createCriteria(persistentClass);
+		if (criterias != null) {
+			for (Criterion currentCriteria : criterias) {
+				criteria.add(currentCriteria);
+			}
+		}
+		return criteria.list();
 	}
 
 	/**
